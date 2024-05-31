@@ -513,7 +513,7 @@ def main(
             return_tensors='pt',
         ),
         train_dataset=train_dataset,
-        eval_dataset=val_dataset.select(list(range(50))),
+        eval_dataset=val_dataset.select(list(range(5))),  # select eval data
         tokenizer=tokenizer,
         compute_metrics=functools.partial(compute_metrics, tokenizer=tokenizer),
     )

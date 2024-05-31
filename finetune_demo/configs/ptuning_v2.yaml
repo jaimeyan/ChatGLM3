@@ -1,21 +1,21 @@
 data_config:
-  train_file: train.json
-  val_file: dev.json
-  test_file: dev.json
+  train_file: bainianzhu_train.json
+  val_file: bainianzhu_dev.json
+  test_file: bainianzhu_dev.json
   num_proc: 16
-max_input_length: 256
-max_output_length: 512
+max_input_length: 128
+max_output_length: 1024
 training_args:
   # see `transformers.Seq2SeqTrainingArguments`
   output_dir: ./output
-  max_steps: 3000
+  max_steps: 300
   # settings for data loading
   per_device_train_batch_size: 4
   dataloader_num_workers: 16
   remove_unused_columns: false
   # settings for saving checkpoints
   save_strategy: steps
-  save_steps: 500
+  save_steps: 100
   # settings for logging
   log_level: info
   logging_strategy: steps
@@ -23,7 +23,7 @@ training_args:
   # settings for evaluation
   per_device_eval_batch_size: 16
   evaluation_strategy: steps
-  eval_steps: 500
+  eval_steps: 300
   # settings for optimizer
   # adam_epsilon: 1e-6
   # uncomment the following line to detect nan or inf values
@@ -36,4 +36,4 @@ training_args:
   #deepspeed: ds_zero_3.json
 peft_config:
   peft_type: PREFIX_TUNING
-  num_virtual_tokens: 64
+  num_virtual_tokens: 16
